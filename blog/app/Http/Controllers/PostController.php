@@ -41,9 +41,8 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
-        $post->save;
-//        die('reached hell');
-        return redirect()->route('post.show',$post->id);
+        $post->save();
+        return redirect()->route('posts.show',$post->id);
     }
 
     /**
@@ -54,7 +53,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('post.show')->with('post', $post);
     }
 
     /**
